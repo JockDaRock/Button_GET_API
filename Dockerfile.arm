@@ -1,6 +1,18 @@
-FROM r.cfcr.io/arm_alpha/jockdarock/tinygowebserver:arm
+ROM arm64v8/golang:1.12-rc-alpine3.8 AS build-env
+
+COPY /tiny_go_web_server.go .
+
+RUN apk update && apk add gcc make build-base wget git
+
+RUN env GOOS=linux GOARCH=arm64 go build -o tiny_go_web_server tiny_go_web_server.go && ls && pwd
+
+FROM alpine
 
 WORKDIR /
+
+COPY --from=build-env /go/tiny_go_web_server .
+
+COPY /tiny_go_web ./tiny_go_web
 
 COPY /EscapeButton ./tiny_go_web
 
