@@ -1,4 +1,4 @@
-ROM arm64v8/golang:1.12-rc-alpine3.8 AS build-env
+FROM arm64v8/golang:1.12-rc-alpine3.8 AS build-env
 
 COPY /tiny_go_web_server.go .
 
