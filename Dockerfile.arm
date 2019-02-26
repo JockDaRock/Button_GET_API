@@ -27,3 +27,4 @@ LABEL "cisco.cpuarch"="x86_64" \
 EXPOSE 8282
 
 CMD  ["./tiny_go_web_server"]
+
